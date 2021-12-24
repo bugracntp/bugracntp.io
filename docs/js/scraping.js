@@ -24,14 +24,15 @@ console.log("run");
 
     const divContent = document.createElement("div");
     divContent.className = "col-content";
-    if (repo.lan !== "null") {
-      divContent.innerHTML = `<h3 class="col-title">${repo.name}</h3>
-                          <p class="des">${repo.des}</p>
-                          <span class="language">${repo.lan}</span>`;
-    } else {
-      divContent.innerHTML = `<h3 class="col-title">${repo.name}</h3>
+    if (!repo.lan) {
+        divContent.innerHTML = `<h3 class="col-title">${repo.name}</h3>
         <p class="des">${repo.des}</p>
         <span class="language"></span>`;
+    } else {
+        divContent.innerHTML = `<h3 class="col-title">${repo.name}</h3>
+                            <p class="des">${repo.des}</p>
+                            <span class="language">${repo.lan}</span>`;
+      
     }
 
     aTag.appendChild(divContent);
