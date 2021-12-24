@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "node": "^17.2.0",
+    "playwright": "^1.17.1"
+  },
+  "name": "work-to-learn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/js/scraping.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

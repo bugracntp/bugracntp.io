@@ -1,0 +1,309 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 10px;
+  /* we can to set all fonts proportionally */
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+br {
+  background-color: #fff;
+  display: block;
+  margin-bottom: 10px;
+}
+body {
+  font-family: "Oswald", sans-serif;
+  /* we change our font style all project but we can override another tags css blocs */
+  background: #161616;
+  font-size: 1.6rem;
+  /* we set the font size in body tag */
+  font-weight: 400;
+  /* we set font weight in body tag*/
+  line-height: 1.5;
+  /* we change line height */
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+.container {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+/* header */
+header {
+  /* padding top right bottom left*/
+  margin-top: 4em;
+  display: flex;
+  flex-direction: auto;
+  z-index: 1;
+  background-color: #161616;
+}
+
+.subcontainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.contact {
+  font-size: 3rem;
+  font-weight: 700;
+  background-color: rgb(70, 70, 70);
+  padding: 1rem 2rem 1rem 2rem;
+  opacity: 0.8;
+  color: #fff;
+  font-size: 3rem;
+  border-radius: 5px;
+  float: right;
+  animation: contact-efect 2s 1;
+  display: flex;
+  gap: 0.5em;
+}
+div.tm-head {
+  font-size: 3rem;
+  font-weight: 700;
+  display: inline-block;
+  background-color: rgb(70, 70, 70);
+  padding: 1rem 2rem 1rem 2rem;
+  opacity: 0.8;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 2.5rem;
+  animation: head-efect 2s 1;
+}
+/* section part */
+section.tm-header-section {
+  margin-top: 5%;
+  width: 100%;
+}
+div.info {
+  background-color: #000000;
+  opacity: 0.9;
+  padding: 10px;
+  color: #fff;
+  float: none;
+  font-size: 2.4rem;
+  margin: auto;
+}
+/* wheele effect elements*/
+.wheele1 {
+  width: 1000px;
+  height: 1050px;
+  top: 0;
+  left: 0;
+  background: #161616;
+  border: 4px solid #fff;
+  margin-left: -400px;
+  margin-top: -400px;
+  z-index: -2;
+  position: fixed;
+  animation: wave1 20s infinite;
+}
+.wheele2 {
+  width: 1000px;
+  height: 1050px;
+  bottom: 0;
+  right: 0;
+  background: #161616;
+  border: 4px solid #fff;
+  margin-right: -400px;
+  margin-bottom: -400px;
+  z-index: -1;
+  position: fixed;
+  animation: wave2 20s infinite;
+}
+/* projects section */
+.tm-project-head {
+  font-size: 4rem;
+  color: #fff;
+  display: block;
+  margin: 1rem;
+}
+.tm-project {
+  box-sizing: border-box;
+  padding: 10rem;
+}
+.projects {
+  margin-top: 2rem;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 400px 400px;
+}
+.project {
+  background: rgb(54, 54, 54);
+  border-radius: 5px;
+  margin-top: 5px;
+  display: inline-block;
+}
+.des{
+  font-size: 1.2rem;
+}
+.language{
+  font-size: 1rem;
+}
+.col-content {
+  padding: 1.5rem;
+  height: 100px;
+  color: #fff;
+}
+.language {
+  margin-top: 10px;
+  float: right;
+}
+
+/* footer */
+footer {
+  text-align: right;
+  color: #fff;
+  padding: 4rem;
+  background: #000;
+  bottom: 0%;
+}
+.f-contact-icon {
+  font-size: 3rem;
+  width: 2%;
+  margin: 4px;
+  display: inline-block;
+}
+/* efects */
+.tm-button:hover {
+  color: rgb(218, 19, 45);
+  transition: 1.5s;
+  font-size: 3.5rem;
+}
+@keyframes wave1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes wave2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  0% {
+    transform: rotate(1turn);
+  }
+}
+@keyframes head-efect {
+  0% {
+    transform: translateX(-1000px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes contact-efect {
+  0% {
+    transform: translateX(1000px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .wheele2 {
+    width: 700px;
+    height: 700px;
+  }
+  .wheele1 {
+    width: 700px;
+    height: 700px;
+  }
+  header {
+    margin-bottom: 30rem;
+    background-color: rgb(70, 70, 70);
+    border-radius: 5px;
+  }
+  .project {
+    margin-top: 10rem;
+    margin: 4px;
+    display: inline-block;
+  }
+  .projects {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr;
+    font-size: 2rem;
+  }
+  footer {
+    margin-top: 10rem;
+  }
+  html {
+    font-size: 8px;
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .project {
+    margin: 4px;
+    display: inline-block;
+  }
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    font-size: 2rem;
+  }
+  html {
+    font-size: 8px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .project {
+    margin: 4px;
+    display: inline-block;
+  }
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    font-size: 2rem;
+  }
+  html {
+    font-size: 8px;
+  }
+
+  header {
+    background-color: #161616;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .project {
+    box-sizing: border-box;
+    font-size: 12px;
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 1.5rem;
+  }
+  .projects {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+  section.tm-header-section {
+    margin-bottom: 20rem;
+  }
+  html {
+    font-size: 12px;
+  }
+  header {
+    background-color: #161616;
+  }
+}
