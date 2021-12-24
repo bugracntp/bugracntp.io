@@ -9,7 +9,7 @@ console.log("run");
     return {
       name: repo.name,
       des: repo.description,
-      url: repo.url,
+      url: repo.html_url,
       lan: repo.language,
     };
   });
