@@ -217,7 +217,7 @@ footer {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 600px) {
   .wheele2 {
     width: 700px;
     height: 700px;
@@ -249,7 +249,7 @@ footer {
   }
 }
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 601px) {
   .project {
     margin: 4px;
     display: inline-block;
@@ -265,7 +265,7 @@ footer {
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 800px) {
   .project {
     margin: 4px;
     display: inline-block;
