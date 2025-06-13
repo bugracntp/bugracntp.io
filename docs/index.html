@@ -2,73 +2,322 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buğra Çantepe</title>
-
-  <link rel="icon" href="../img/icon.png" type="image/x-icon" />
-  <!-- libraries -->
-  <script src="https://kit.fontawesome.com/12ad79f037.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords"
+    content="bugra cantepe, portfolio, bugra, full stack dev, personal portfolio, portfolio design, portfolio website, personal portfolio" />
+  <meta name="description" content="Welcome to Bugra's Portfolio. Full-Stack Web Developer and Android App Developer" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Favicon -->
+  <link id='favicon' rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-png">
+  <title>Portfolio | Bugra Cantepe</title>
 </head>
 
-<body>
+<body oncontextmenu="return false">
+
+  <!-- pre loader -->
+  <!-- <div class="loader-container">
+  <img draggable="false" src="./assets/images/preloader.gif" alt="">
+</div> -->
+
+  <!-- navbar starts -->
   <header>
-    <div class="container">
-      <div class="subcontainer">
-        <div class="tm-head">
-          <p>» Hello my name is Buğra Çantepe</p>
+    <a href="/" class="logo">Bugra Cantepe</a>
+
+    <div id="menu" class="fas fa-bars"></div>
+    <nav class="navbar">
+      <ul>
+        <li><a class="active" href="#home" data-i18n="home_title">Anasayfa</a></li>
+        <li><a href="#about" data-i18n="about_title">Hakkımda</a></li>
+        <li><a href="#skills" data-i18n="skills_title">Yetenekler</a></li>
+        <li><a href="#education" data-i18n="education_title">Eğitim</a></li>
+        <li><a href="#work" data-i18n="work_title">Projeler</a></li>
+        <li><a href="#experience" data-i18n="experience_title">Deneyim</a></li>
+        <li><a href="#contact" data-i18n="contact_title">İletişim</a></li>
+      </ul>
+    </nav>
+    <div class="theme-switch-wrapper">
+      <label class="theme-switch" for="checkbox">
+        <input type="checkbox" id="checkbox" />
+        <div class="slider round">
+          <i class="fas fa-sun"></i>
+          <i class="fas fa-moon"></i>
         </div>
-        <div class="contact">
-          <div class="h-contact-icon">
-            <a href="https://github.com/bugracntp">
-              <i class="fab fa-github-square"></i>
-            </a>
-          </div>
-          <div class="h-contact-icon">
-            <a href="https://www.linkedin.com/in/bugra-cantepe/"><i class="fab fa-linkedin"></i></a>
-          </div>
-        </div>
-      </div>
+      </label>
     </div>
+    <select id="languageSwitcher" style="margin-left:20px;">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+    </select>
   </header>
-  <section class="tm-header-section ">
-    <div class="container">
-      <div class="info">
-        <div class="tm-text">
-          I'm a software developer who is improve himself and still continous
-          learning.<br />
-          I haven't experiance in web developing yet. I'm new at that field but
-          i am sure i will prove myself as soon as possible.
+  <!-- navbar ends -->
+
+
+  <!-- hero section starts -->
+  <section class="home" id="home">
+    <div id="particles-js"></div>
+
+    <div class="content">
+      <h2>Hi There,<br /> I'm Bugra <span>Cantepe</span></h2>
+      <p>i am into <span class="typing-text"></span></p>
+      <a href="#about" class="btn"><span>About Me</span>
+        <i class="fas fa-arrow-circle-down"></i>
+      </a>
+      <div class="socials">
+        <ul class="social-icons">
+          <li><a class="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com/in/bugra-cantepe/"
+              target="_blank"><i class="fab fa-linkedin"></i></a></li>
+          <li><a class="github" aria-label="GitHub" href="https://github.com/bugracntp" target="_blank"><i
+                class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="image">
+      <img draggable="false" class="tilt" src="./assets/images/hero.png" alt="">
+    </div>
+  </section>
+  <!-- hero section ends -->
+
+
+  <!-- about section starts -->
+  <section class="about" id="about">
+    <h2 class="heading" data-i18n="about_title"><i class="fas fa-user-alt"></i> Hakkımda</h2>
+    <div class="row">
+      <div class="image">
+        <img draggable="false" class="tilt" src="./assets/images/profile2.jpg" alt="">
+      </div>
+      <div class="content">
+        <h3 data-i18n="about_name">Ben Buğra Çantepe</h3>
+        <span class="tag" data-i18n="about_job">Yazılım Mühendisi</span>
+        <p data-i18n="about_desc">
+        </p>
+        <div class="box-container">
+          <div class="box">
+            <p><span data-i18n="about_birth">Doğum Tarihi : </span> 11/07/2001</p>
+            <p><span data-i18n="about_location">Yer : </span> Tokat, Türkiye</p>
+          </div>
+          <div class="box">
+            <p><span data-i18n="about_email">Email : </span> can123.bugra@gmail.com</p>
+          </div>
+        </div>
+        <div class="resumebtn">
+          <a href="https://www.linkedin.com/in/bugra-cantepe/" target="_blank" class="btn"><span>LinkedIn</span>
+            <i class="fas fa-chevron-right"></i>
+          </a>
         </div>
       </div>
     </div>
   </section>
-  <section class="tm-project">
-    <strong class="tm-project-head text-uppercase">github projects</strong>
-    <hr />
-    <div class="projects" id="projects-list">
-      <!-- repostries -->
+  <!-- about section ends -->
+
+  <!-- skills section starts -->
+  <section class="skills" id="skills">
+    <h2 class="heading" data-i18n="skills_title">Yeteneklerim</h2>
+    <div class="container">
+      <div class="row" id="skillsContainer">
+      </div>
     </div>
   </section>
-  <div class="wheele1"></div>
-  <div class="wheele2"></div>
+  <!-- skills section ends -->
 
-  <footer>
-    <p>Find me @</p>
-    <div class="f-contact-container">
-      <div class="f-contact-icon">
-        <a href="https://github.com/bugracntp"><i class="fab fa-github-square"></i></a>
-      </div>
-      <div class="f-contact-icon">
-        <a href="https://www.linkedin.com/in/bugra-cantepe/"><i class="fab fa-linkedin"></i></a>
+
+  <!-- education section starts -->
+  <section class="education" id="education">
+    <h2 class="heading" data-i18n="education_title">Eğitimim</h2>
+    <div class="box-container">
+      <div class="box">
+        <div class="content">
+          <h3>FIRAT ÜNİVERSİTESİ</h3>
+          <p>Yazılım Mühendisliği</p>
+          <h4>2019-2024 | 4.00/3.19, Elazığ</h4>
+        </div>
       </div>
     </div>
-  </footer>
+  </section>
+  <!-- education section ends -->
 
-  <script src="js/scraping.js"></script>
+
+  <!-- work project section starts -->
+  <section class="work" id="work">
+    <h2 class="heading" data-i18n="work_title">Projelerim</h2>
+    <div class="box-container" id="projects-list"></div>
+  </section>
+  <!-- work project section ends -->
+
+  <!-- experience section starts -->
+  <section class="experience" id="experience">
+    <h2 class="heading" data-i18n="experience_title"><i class="fas fa-briefcase"></i> Deneyimim </h2>
+    <div class="timeline">
+      <div class="container right">
+        <div class="content">
+          <div class="tag">
+            <h2>Customer Experience Ltd.</h2>
+          </div>
+          <div class="desc">
+            <h3>Software Support Specialist</h3>
+            <p>2025 - present | İstanbul</p>
+          </div>
+        </div>
+      </div>
+      <div class="container left">
+        <div class="content">
+          <div class="tag">
+            <h2>Dogus Teknoloji A.Ş</h2>
+          </div>
+          <div class="desc">
+            <h3>Software Developer</h3>
+            <p>2023 - 2025 | İstanbul</p>
+          </div>
+        </div>
+      </div>
+      <div class="container right">
+        <div class="content">
+          <div class="tag">
+            <h2>RYSEFT</h2>
+          </div>
+          <div class="desc">
+            <h3>Stajyer</h3>
+            <p>2023 - 2023 | Ankara</p>
+          </div>
+        </div>
+      </div>
+      <div class="container left">
+        <div class="content">
+          <div class="tag">
+            <h2>AGE Bilişim</h2>
+          </div>
+          <div class="desc">
+            <h3>Stajyer</h3>
+            <p>2022 - 2022 | Ankara</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- experience section ends -->
+
+  <!-- contact section starts -->
+  <section class="contact" id="contact">
+    <h2 class="heading" data-i18n="contact_title">İletişim</h2>
+    <div class="container">
+      <div class="content">
+        <div class="contact-info">
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3 data-i18n="contact_address">Adres</h3>
+            <p>Tokat, Türkiye</p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <h3 data-i18n="contact_email">Email</h3><p>can123.bugra@gmail.com</p>
+          </div>
+        </div>
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <div class="field">
+              <input data-i18n="contact_name" type="text" name="name" placeholder="Adınız" required>
+              <i class='fas fa-user'></i>
+            </div>
+            <div class="field">
+              <input type="email" name="email" placeholder="Email" required>
+              <i class='fas fa-envelope'></i>
+            </div>
+            <div class="field">
+              <input type="tel" name="phone" placeholder="Telefon">
+              <i class='fas fa-phone-alt'></i>
+            </div>
+            <div class="message">
+              <textarea placeholder="Mesajınız" name="message" required></textarea>
+              <i class="fas fa-comment-dots"></i>
+            </div>
+          </div>
+          <div class="button-area">
+            <button data-i18n="contact_send" type="submit">
+              Gönder
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- contact section ends -->
+
+
+  <!-- footer section starts -->
+  <section class="footer">
+    <div class="box-container">
+      <div class="box">
+        <h3 data-i18n="bugra_cantepe"></h3>
+        <p data-i18n="footer_desc"></p>
+      </div>
+      <div class="box">
+        <h3 data-i18n="quick_links">Hızlı Linkler</h3>
+        <a href="#home" data-i18n="home_title"><i class="fas fa-chevron-circle-right"></i> Anasayfa</a>
+        <a href="#about" data-i18n="about_title"><i class="fas fa-chevron-circle-right"></i> Hakkımda</a>
+        <a href="#skills" data-i18n="skills_title"><i class="fas fa-chevron-circle-right"></i> Yetenekler</a>
+        <a href="#education" data-i18n="education_title"><i class="fas fa-chevron-circle-right"></i> Eğitim</a>
+        <a href="#work" data-i18n="work_title"><i class="fas fa-chevron-circle-right"></i> Projeler</a>
+        <a href="#experience" data-i18n="experience_title"><i class="fas fa-chevron-circle-right"></i> Deneyimler</a>
+      </div>
+      <div class="box">
+        <h3 data-i18n="contact_info"> İletişim Bilgileri</h3>
+        <p> <i class="fas fa-envelope"></i>can123.bugra@gmail.com</p>
+        <p> <i class="fas fa-map-marked-alt"></i>Tokat, Türkiye</p>
+        <div class="share">
+          <a href="https://www.linkedin.com/in/bugra-cantepe/" class="fab fa-linkedin" aria-label="LinkedIn"
+            target="_blank"></a>
+          <a href="https://github.com/bugracntp" class="fab fa-github" aria-label="GitHub" target="_blank"></a>
+          <a href="mailto:can123.bugra@gmail.com" class="fas fa-envelope" aria-label="Mail" target="_blank"></a>
+        </div>
+      </div>
+    </div>
+    <h1 class="credit">Designed with  by <a
+        href="https://www.linkedin.com/in/bugra-cantepe/" data-i18n="bugra_cantepe"> Buğra Çantepe</a></h1>
+  </section>
+  <!-- footer section ends -->
+
+
+  <!-- scroll top btn -->
+  <a href="#home" aria-label="ScrollTop" class="fas fa-angle-up" id="scroll-top"></a>
+  <!-- scroll back to top -->
+
+
+  <!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
+  <!-- jquery cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- typed.js cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"
+    integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- particle.js links -->
+  <script src="./js/particles.min.js"></script>
+  <script src="./js/app.js"></script>
+
+  <!-- vanilla tilt.js links -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"
+    integrity="sha512-SttpKhJqONuBVxbRcuH0wezjuX+BoFoli0yPsnrAADcHsQMW8rkR84ItFHGIkPvhnlRnE2FaifDOUw+EltbuHg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- scroll reveal anim -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
+
+  <script src="./js/script.js"></script>
+  <script src="./js/scraping.js"></script>
+
 </body>
 
 </html>

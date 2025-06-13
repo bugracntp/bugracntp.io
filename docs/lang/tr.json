@@ -1,0 +1,26 @@
+{
+  "about_title": "<i class=\"fas fa-user-alt\"></i> Hakkımda",
+  "about_name": "Ben Buğra Çantepe",
+  "about_job": "Yazılım Mühendisi",
+  "about_desc": "Türkiye’de yaşayan bir Full-Stack geliştiriciyim ve Fırat Üniversitesi Yazılım Mühendisliği bölümünden mezun oldum. Temiz, verimli ve ölçeklenebilir web uygulamaları geliştirmeye tutkulu bir yazılım geliştiricisiyim. Hem frontend hem de backend alanlarında aktif olarak çalışıyorum. Vue.js, ASP.NET ve Node.js gibi teknolojilerin yanı sıra C#, JavaScript, TypeScript ve Python dillerine hâkimim. Ayrıca PostgreSQL, MongoDB ve MySQL gibi modern veritabanlarıyla çalışıyorum. Yeni teknolojileri yakından takip ediyorum; GitHub üzerinden açık kaynak projeler geliştiriyor ve kendimi sürekli olarak yeni projelerle geliştirmeye devam ediyorum. Gerçek ihtiyaçlara çözüm sunan, kullanıcı dostu full-stack uygulamalar geliştirmeyi seviyorum.",
+  "about_birth": "Doğum Tarihi : ",
+  "about_location": "Yer : ",
+  "about_email": "Email : ",
+  "about_phone": "Telefon : ",
+  "experience_title": "<i class=\"fas fa-briefcase\"></i> Deneyimim",
+  "experience_company": "Şirket : ",
+  "experience_location": "Yer : ",
+  "experience_date": "Tarih : ",
+  "experience_desc": "Açıklama : ",
+  "home_title": "Anasayfa",
+  "skills_title": "Yeteneklerim",
+  "education_title": "Eğitimim",
+  "work_title": "Projelerim",
+  "experience_title": "Deneyimim",
+  "contact_title": "İletişim",
+  "quick_links": "Hızlı Linkler",
+  "bugra_cantepe": "Buğra Çantepe",
+  "footer_desc": "Kişisel portföy sitemi ziyaret ettiğiniz için teşekkürler. Sosyal medya üzerinden bana ulaşabilirsiniz.",
+  "contact_info": "İletişim Bilgileri"
+
+} 
