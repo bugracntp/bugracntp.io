@@ -97,7 +97,7 @@ const Header = () => {
             className={styles.cvButton}
             onClick={() => {
               const link = document.createElement('a');
-              link.href = '/bugracantepe.pdf'; // CV dosyasının public klasöründeki yolu
+              link.href = './bugracantepe.pdf'; // CV dosyasının public klasöründeki yolu
               link.download = 'Bugra_Cantepe_CV.pdf'; // İndirilecek dosyanın adı
               document.body.appendChild(link);
               link.click();
@@ -191,7 +191,7 @@ const Header = () => {
               className={styles.mobileCvButton}
               onClick={() => {
                 const link = document.createElement('a');
-                link.href = '/bugracantepe.pdf';
+                link.href = './bugracantepe.pdf';
                 link.download = 'Bugra_Cantepe_CV.pdf';
                 document.body.appendChild(link);
                 link.click();

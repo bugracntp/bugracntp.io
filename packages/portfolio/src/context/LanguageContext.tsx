@@ -29,7 +29,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   useEffect(() => {
     const loadTranslations = async () => {
       try {
-        const response = await fetch('/translations.json');
+        const response = await fetch('./translations.json');
         const data = await response.json();
         setTranslations(data);
       } catch (error) {
