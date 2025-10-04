@@ -421,12 +421,12 @@ export const portfolioData = {
         "Jr. Software Engineer",
         "Full Stack Developer",
         ".NET Developer",
-        "Mobile App Developer",
+        "Frontend Developer",
         "Backend Developer"
       ],
       title: "Jr. Software Engineer",
       subtitle: "Full Stack .NET Developer",
-      description: "Dynamic software developer with 2+ years of experience in enterprise-level software development, specialized in .NET Core, React Native, and Vue.js technologies. Expert in N-Layer Architecture, Docker, Kubernetes, and Google Cloud Platform.",
+      description: "Dynamic Full Stack Developer with 2.5+ years specializing in .NET Core, React Native, and Vue.js for enterprise solutions. Expert in N-Layer Architecture, Docker, Kubernetes, and Google Cloud Platform. Successfully delivered mission-critical applications to 10,000+ users.",
       cta: "View My Work",
       ctaSecondary: "Get In Touch",
       stats: [
@@ -444,8 +444,9 @@ export const portfolioData = {
       title: "About Me",
       description: "Dynamic software developer with 2+ years of experience in enterprise-level software development, specialized in N-Layer Architecture and cloud deployment.",
       paragraphs: [
-        "I have been working professionally in software development for 2+ years. I develop large-scale applications with .NET Core, Entity Framework Core, and modern frontend technologies (React Native, Vue.js). I am an expert in N-Layer Architecture implementation and cloud deployment on Google Kubernetes Engine.",
-        "I have experience in Docker containerization, authentication systems with Keycloak and OAuth 2.0, and database optimization with SQL Server and T-SQL. I have contributed to the successful delivery of mission-critical applications serving 10,000+ users. I am an expert in CI/CD pipeline implementation and integration of complex third-party services including Genesys Cloud platforms."
+        "I'm a Full Stack .NET Developer driven by a passion for software development for the past 2.5+ years. Throughout my career, I've built enterprise applications serving thousands of users, always focusing on bringing together technical excellence and exceptional user experience in every project.",
+        "On the backend, I architect robust solutions with .NET Core and Entity Framework, while on the frontend, I craft modern user interfaces with React Native and Vue.js. I thrive on building scalable solutions using cloud technologies, microservices architectures, and DevOps practices.",
+        "For me, coding is more than just a profession—it's an opportunity for continuous learning and growth. I love transforming complex problems into simple, efficient solutions, writing clean code, and fostering knowledge sharing within teams."
       ],
       interests: [
         "🎮 Video Games",
