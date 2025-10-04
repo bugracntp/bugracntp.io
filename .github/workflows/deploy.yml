@@ -29,6 +29,9 @@ jobs:
     - name: Build portfolio
       run: npm run build:portfolio
       
+    - name: Disable Jekyll processing
+      run: echo "" > dist/.nojekyll
+      
     - name: Setup Pages
       uses: actions/configure-pages@v4
       
