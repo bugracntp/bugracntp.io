@@ -1,0 +1,684 @@
+.about {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--bg-primary) 0%,
+    var(--bg-primary) 30%,
+    var(--bg-secondary) 70%,
+    var(--bg-primary) 100%
+  );
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Kenar kararmaları kaldırıldı */
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.sectionNumber {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.divider {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--border-color), transparent);
+  margin-left: 1rem;
+}
+
+/* Content Layout */
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Text Content */
+.textContent {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+.description {
+  margin-bottom: 3rem;
+}
+
+.paragraph {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.4s ease-out backwards;
+}
+
+/* Interests Section */
+.interestsSection {
+  margin-bottom: 3rem;
+}
+
+.interestsTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.interestsTitle::before {
+  content: '▹';
+  color: var(--accent-primary);
+  font-size: 1.5rem;
+}
+
+.interestsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.interestCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  animation: fadeInUp 0.4s ease-out backwards;
+  cursor: default;
+}
+
+.interestCard:hover {
+  transform: translateX(8px);
+  border-color: var(--accent-primary);
+  background: var(--bg-tertiary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.interestIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.interestText {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Quick Info Cards */
+.quickInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.infoCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  height: 100%;
+}
+
+.infoCard:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.infoIcon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 12px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.infoLabel {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.infoValue {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Visual Content */
+.visualContent {
+  position: relative;
+  animation: slideInRight 0.5s ease-out;
+}
+
+.codeWindow {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.codeWindow:hover {
+  transform: translateY(-8px);
+}
+
+.codeHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.windowButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.windowButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.fileName {
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.codeContent {
+  padding: 2rem;
+  background: var(--bg-primary);
+  overflow-x: auto;
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.keyword {
+  color: #c678dd;
+  font-weight: 600;
+}
+
+.className {
+  color: #e5c07b;
+  font-weight: 600;
+}
+
+.string {
+  color: #98c379;
+}
+
+.number {
+  color: #d19a66;
+}
+
+.method {
+  color: #61afef;
+}
+
+.boolean {
+  color: #d19a66;
+}
+
+/* Floating Stats */
+.floatingStats {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  display: flex;
+  gap: 1rem;
+}
+
+.statBubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  animation: float 3s ease-in-out infinite;
+  color: white;
+}
+
+.statNumber {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+/* Background Decoration */
+.bgDecoration {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.08;
+}
+
+.gridPattern {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(var(--text-primary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--text-primary) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+/* Hero'dan About'a geçiş için gradient orb'lar */
+.gradientOrb1,
+.gradientOrb2,
+.gradientOrb3,
+.gradientOrb4,
+.gradientOrb5 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: floatOrb 20s ease-in-out infinite, orbTransition 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.gradientOrb1 {
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  top: 20%;
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.gradientOrb2 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(270deg, var(--accent-secondary), var(--accent-primary));
+  top: 50%;
+  right: -150px;
+  animation-delay: 10s;
+}
+
+.gradientOrb3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--accent-primary), transparent);
+  top: 30%;
+  left: 30%;
+  animation-delay: 5s;
+}
+
+.gradientOrb4 {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  bottom: 30%;
+  left: 60%;
+  animation-delay: 15s;
+}
+
+.gradientOrb5 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--accent-secondary), transparent);
+  top: 10%;
+  right: 20%;
+  animation-delay: 8s;
+}
+
+/* Mouse takipli ışık efekti */
+.mouseLight {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.12;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  filter: blur(80px);
+}
+
+/* Ek ışık efektleri - yatay ışınlar */
+.lightBeam1,
+.lightBeam2,
+.lightBeam3 {
+  position: absolute;
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0.3;
+  animation: lightBeamHorizontal 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.lightBeam1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.lightBeam2 {
+  top: 50%;
+  right: 20%;
+  animation-delay: 1.5s;
+}
+
+.lightBeam3 {
+  bottom: 30%;
+  left: 40%;
+  animation-delay: 3s;
+}
+
+/* Parçacık efektleri */
+.particle1,
+.particle2,
+.particle3,
+.particle4 {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: particleFloat 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.particle1 {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.particle2 {
+  top: 40%;
+  left: 50%;
+  animation-delay: 1.5s;
+}
+
+.particle3 {
+  bottom: 30%;
+  left: 70%;
+  animation-delay: 3s;
+}
+
+.particle4 {
+  top: 60%;
+  right: 15%;
+  animation-delay: 4.5s;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50px);
+  }
+}
+
+@keyframes lightBeam {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scaleY(0.5);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes lightBeamHorizontal {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scaleX(0.5);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(var(--accent-primary-rgb), 0.05) 30%,
+      rgba(var(--accent-primary-rgb), 0.1) 60%,
+      rgba(var(--accent-primary-rgb), 0.15) 100%
+    );
+  }
+  50% {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(var(--accent-secondary-rgb), 0.08) 30%,
+      rgba(var(--accent-secondary-rgb), 0.12) 60%,
+      rgba(var(--accent-secondary-rgb), 0.18) 100%
+    );
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .quickInfo {
+    grid-template-columns: 1fr;
+  }
+
+  .floatingStats {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    margin-top: 2rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 4rem 0;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .interestsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .paragraph {
+    font-size: 1rem;
+  }
+
+  .codeContent {
+    padding: 1rem;
+  }
+
+  .code {
+    font-size: 0.75rem;
+  }
+
+  .statBubble {
+    width: 80px;
+    height: 80px;
+  }
+
+  .statNumber {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .floatingStats {
+    flex-direction: column;
+  }
+}

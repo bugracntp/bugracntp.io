@@ -1,0 +1,21 @@
+{
+  "name": "bugracntp-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:portfolio": "npm --workspace=portfolio run dev",
+    "dev:tracker": "npm --workspace=tracker run dev",
+    "build:all": "tsx scripts/build-all.ts",
+    "build:portfolio": "npm --workspace=portfolio run build",
+    "build:tracker": "npm --workspace=tracker run build",
+    "deploy": "npm run build:portfolio && gh-pages -d dist"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.1.1",
+    "gh-pages": "^6.1.1",
+    "tsx": "^4.19.2"
+  }
+}
