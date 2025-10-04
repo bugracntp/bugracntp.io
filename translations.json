@@ -1,0 +1,272 @@
+{
+    "tr": {
+      "nav": {
+        "home": "Ana Sayfa",
+        "about": "Hakkımda",
+        "experience": "Deneyim",
+        "projects": "Projeler",
+        "skills": "Yetenekler",
+        "contact": "İletişim"
+      },
+      "hero": {
+        "greeting": "Merhaba, Ben",
+        "title": "Jr. Software Engineer",
+        "description": "2+ yıllık deneyime sahip Full Stack .NET Developer. Enterprise seviye uygulamalar geliştirme, modern teknolojiler ve bulut sistemleri konusunda uzmanım.",
+        "cta": {
+          "contact": "İletişime Geç",
+          "resume": "CV İndir",
+          "projects": "Projelerimi Gör"
+        }
+      },
+      "about": {
+        "title": "Hakkımda",
+        "subtitle": "Beni Tanıyın",
+        "description": "Dinamik Full Stack .NET Developer olarak enterprise seviyede yazılım geliştirme alanında 2+ yıllık deneyime sahibim. .NET Core, Entity Framework Core ve React Native, Vue.js gibi modern frontend teknolojilerinde uzmanım.",
+        "highlights": {
+          "experience": "Yıl Deneyim",
+          "projects": "Tamamlanan Proje",
+          "technologies": "Teknoloji"
+        },
+        "qualities": [
+          "N-Layer Architecture Uzmanlığı",
+          "Cloud Deployment & Kubernetes",
+          "RESTful API Geliştirme",
+          "CI/CD Pipeline Implementasyonu"
+        ]
+      },
+      "projects": {
+        "title": "Projelerim",
+        "subtitle": "Yaptığım İşler",
+        "viewAll": "Tüm Projeleri Gör",
+        "viewLess": "Daha Az Göster",
+        "featured": "Öne Çıkan",
+        "viewDetails": "Detayları Gör",
+        "liveDemo": "Canlı Demo",
+        "sourceCode": "Kaynak Kod",
+        "technologies": "Github Projelerinde Kullandığım Diller"
+      },
+      "skills": {
+        "title": "Yeteneklerim",
+        "subtitle": "Teknoloji Yığınım",
+        "categories": {
+          "languages": "Programlama Dilleri",
+          "frameworks": "Framework & Teknolojiler",
+          "databases": "Veritabanları",
+          "tools": "Araçlar & DevOps",
+          "specializations": "Uzmanlık Alanları",
+          "soft": "Soft Skills"
+        },
+        "teamwork": "Takım Çalışması",
+        "learning": "Sürekli Öğrenme",
+        "problemSolving": "Problem Çözme",
+        "communication": "İletişim",
+        "softSkills": "Soft Skills",
+        "level": {
+          "expert": "🔥 Uzman",
+          "advanced": "⭐ İleri Düzey",
+          "intermediate": "💪 Orta Düzey",
+          "beginner": "🌱 Başlangıç"
+        },
+        "additionalCards": {
+          "learning": {
+            "title": "Sürekli Öğrenme",
+            "description": "Her gün yeni teknolojiler öğreniyor ve kendimi geliştiriyorum"
+          },
+          "teamwork": {
+            "title": "Takım Çalışması",
+            "description": "Agile metodolojisi ile ekip içinde etkili iş birliği"
+          },
+          "problemSolving": {
+            "title": "Problem Çözme",
+            "description": "Karmaşık problemlere basit ve etkili çözümler üretiyorum"
+          }
+        }
+      },
+      "experience": {
+        "title": "İş Deneyimi",
+        "subtitle": "Kariyer Yolculuğum",
+        "current": "Şu Anda",
+        "responsibilities": "Sorumluluklar",
+        "technologies": "Teknolojiler"
+      },
+      "contact": {
+        "title": "İletişime Geçin",
+        "subtitle": "Benimle İletişime Geçin",
+        "description": "Proje fikirleri, iş birlikleri veya sadece merhaba demek için benimle iletişime geçebilirsiniz!",
+        "form": {
+          "name": "Adınız",
+          "email": "E-posta Adresiniz",
+          "subject": "Konu",
+          "message": "Mesajınız",
+          "send": "Mesaj Gönder",
+          "sending": "Gönderiliyor...",
+          "placeholders": {
+            "name": "Adınız Soyadınız",
+            "email": "ornek@email.com",
+            "message": "Mesajınızı buraya yazın..."
+          },
+          "sent": "Gönderildi!",
+          "success": "Mesajınız başarıyla gönderildi! En kısa sürede dönüş yapacağım."
+        },
+        "info": {
+          "email": "E-posta",
+          "phone": "Telefon",
+          "location": "Konum",
+          "availability": "Müsaitlik"
+        },
+        "social": "Sosyal Medya",
+        "availability": {
+          "title": "Çalışma Durumu",
+          "openToWork": "Yeni projelere açığım"
+        }
+      },
+      "footer": {
+        "rights": "Tüm hakları saklıdır.",
+        "madeWith": "ile yapıldı",
+        "quickLinks": "Hızlı Bağlantılar"
+      },
+      "theme": {
+        "light": "Aydınlık Tema",
+        "dark": "Karanlık Tema"
+      },
+      "language": {
+        "tr": "Türkçe",
+        "en": "English"
+      }
+    },
+    "en": {
+      "nav": {
+        "home": "Home",
+        "about": "About",
+        "experience": "Experience",
+        "projects": "Projects",
+        "skills": "Skills",
+        "contact": "Contact"
+      },
+      "hero": {
+        "greeting": "Hello, I'm",
+        "title": "Jr. Software Engineer",
+        "description": "Full Stack .NET Developer with 2+ years of experience. Specialized in building enterprise-level applications with modern technologies and cloud systems.",
+        "cta": {
+          "contact": "Get in Touch",
+          "resume": "Download CV",
+          "projects": "View Projects"
+        }
+      },
+      "about": {
+        "title": "About Me",
+        "subtitle": "Get to Know Me",
+        "description": "Dynamic Full Stack .NET Developer with over 2 years of hands-on experience in enterprise-level software development. Proficient in .NET Core, Entity Framework Core, and modern frontend technologies such as React Native and Vue.js.",
+        "highlights": {
+          "experience": "Years Experience",
+          "projects": "Projects Completed",
+          "technologies": "Technologies"
+        },
+        "qualities": [
+          "N-Layer Architecture Expertise",
+          "Cloud Deployment & Kubernetes",
+          "RESTful API Development",
+          "CI/CD Pipeline Implementation"
+        ]
+      },
+      "projects": {
+        "title": "My Projects",
+        "subtitle": "What I've Built",
+        "viewAll": "View All Projects",
+        "viewLess": "Show Less",
+        "featured": "Featured",
+        "viewDetails": "View Details",
+        "liveDemo": "Live Demo",
+        "sourceCode": "Source Code",
+        "technologies": "Languages I've Used in Github Projects"
+      },
+      "skills": {
+        "title": "My Skills",
+        "subtitle": "My Technology Stack",
+        "categories": {
+          "languages": "Programming Languages",
+          "frameworks": "Frameworks & Technologies",
+          "databases": "Databases",
+          "tools": "Tools & DevOps",
+          "specializations": "Specializations",
+          "soft": "Soft Skills"
+        },
+        "teamwork": "Teamwork",
+        "learning": "Learning",
+        "problemSolving": "Problem Solving",
+        "communication": "Communication",
+        "softSkills": "Soft Skills",
+        "level": {
+          "expert": "🔥 Expert",
+          "advanced": "⭐ Advanced",
+          "intermediate": "💪 Intermediate",
+          "beginner": "🌱 Beginner"
+        },
+        "additionalCards": {
+          "learning": {
+            "title": "Continuous Learning",
+            "description": "I learn new technologies every day and improve myself"
+          },
+          "teamwork": {
+            "title": "Teamwork",
+            "description": "Effective collaboration within the team with Agile methodology"
+          },
+          "problemSolving": {
+            "title": "Problem Solving",
+            "description": "I produce simple and effective solutions to complex problems"
+          }
+        }
+      },
+      "experience": {
+        "title": "Work Experience",
+        "subtitle": "My Career Journey",
+        "current": "Current",
+        "responsibilities": "Responsibilities",
+        "technologies": "Technologies"
+      },
+      "contact": {
+        "title": "Get In Touch",
+        "subtitle": "Contact Me",
+        "description": "Feel free to reach out for project ideas, collaborations, or just to say hello!",
+        "form": {
+          "name": "Your Name",
+          "email": "Your Email",
+          "subject": "Subject",
+          "message": "Your Message",
+          "send": "Send Message",
+          "sending": "Sending...",
+          "placeholders": {
+            "name": "Your Full Name",
+            "email": "name@example.com",
+            "message": "Type your message here..."
+          },
+          "sent": "Sent!",
+          "success": "Your message has been sent successfully! I'll get back to you soon."
+        },
+        "info": {
+          "email": "Email",
+          "phone": "Phone",
+          "location": "Location",
+          "availability": "Availability"
+        },
+        "social": "Social Media",
+        "availability": {
+          "title": "Availability",
+          "openToWork": "Open to new projects"
+        }
+      },
+      "footer": {
+        "rights": "All rights reserved.",
+        "madeWith": "Made with",
+        "quickLinks": "Quick Links"
+      },
+      "theme": {
+        "light": "Light Theme",
+        "dark": "Dark Theme"
+      },
+      "language": {
+        "tr": "Türkçe",
+        "en": "English"
+      }
+    }
+  }
