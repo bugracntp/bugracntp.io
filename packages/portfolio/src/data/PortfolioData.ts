@@ -446,7 +446,7 @@ export const portfolioData = {
       paragraphs: [
         "I'm a Full Stack .NET Developer driven by a passion for software development for the past 2.5+ years. Throughout my career, I've built enterprise applications serving thousands of users, always focusing on bringing together technical excellence and exceptional user experience in every project.",
         "On the backend, I architect robust solutions with .NET Core and Entity Framework, while on the frontend, I craft modern user interfaces with React Native and Vue.js. I thrive on building scalable solutions using cloud technologies, microservices architectures, and DevOps practices.",
-        "For me, coding is more than just a profession—it's an opportunity for continuous learning and growth. I love transforming complex problems into simple, efficient solutions, writing clean code, and fostering knowledge sharing within teams."
+        "For me, coding is more than just a profession it's an opportunity for continuous learning and growth. I love transforming complex problems into simple, efficient solutions, writing clean code, and fostering knowledge sharing within teams."
       ],
       interests: [
         "🎮 Video Games",
