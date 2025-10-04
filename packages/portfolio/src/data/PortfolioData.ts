@@ -19,8 +19,8 @@ export const portfolioData = {
         "Jr. Software Engineer",
         "Full Stack Developer",
         ".NET Developer",
-        "Mobile App Developer",
-        "Backend Developer"
+        "Backend Developer",
+        "Frontend Developer"
       ],
       title: "Jr. Software Engineer",
       subtitle: "Full Stack .NET Developer",
