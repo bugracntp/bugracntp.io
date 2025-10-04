@@ -24,7 +24,7 @@ export const portfolioData = {
       ],
       title: "Jr. Software Engineer",
       subtitle: "Full Stack .NET Developer",
-      description: "Enterprise seviyesinde yazılım geliştirme konusunda 2.5+ yıllık deneyime sahip, .NET Core, React Native ve Vue.js teknolojilerinde uzmanlaşmış dinamik bir yazılım geliştiricisi. N-Layer Architecture, Docker, Kubernetes ve Google Cloud Platform konularında uzman. 10,000+ kullanıcıya hizmet veren mission-critical uygulamalar geliştirdim.",
+      description: "2.5+ yıllık deneyime sahip Full Stack Developer. .NET Core, React.js ve Vue.js ile enterprise uygulamalar geliştiriyorum. Docker, Kubernetes ve Google Cloud Platform kullanarak 10,000+ kullanıcıya hizmet veren mission-critical sistemler tasarlıyorum.",
       cta: "Projelerime Göz At",
       ctaSecondary: "Benimle İletişime Geç",
       stats: [
@@ -34,16 +34,16 @@ export const portfolioData = {
         { label: "Teknoloji Uzmanlığı", value: "15+", icon: "zap" },
       ],
       techStack: [
-        "C#/.NET Core", "React Native", "Vue.js", "Docker",
-        "Kubernetes", "Google Cloud", "Keycloak", "Entity Framework"
+        "C#/.NET Core", "React.js", "Vue.js", "Docker", "Entity Framework"
       ]
     },
     about: {
       title: "Hakkımda",
       description: "Enterprise seviyesinde yazılım geliştirme konusunda 2.5+ yıllık deneyime sahip, N-Layer Architecture ve cloud deployment konularında uzmanlaşmış dinamik bir Full Stack Developer'ım. 10,000+ kullanıcıya hizmet veren mission-critical uygulamalar geliştirdim.",
       paragraphs: [
-        "2.5+ yıldır profesyonel olarak yazılım geliştirme alanında çalışıyorum. .NET Core, Entity Framework Core ve modern frontend teknolojileri (React Native, Vue.js) ile büyük ölçekli uygulamalar geliştiriyorum. N-Layer Architecture implementasyonu ve Google Kubernetes Engine üzerinde cloud deployment konularında uzmanım.",
-        "Docker containerization, Keycloak ve OAuth 2.0 ile authentication sistemleri, SQL Server ve T-SQL ile database optimization konularında deneyimliyim. 10,000+ kullanıcıya hizmet veren mission-critical uygulamaların başarılı tesliminde rol aldım ve %99.9 uptime başarısı elde ettim. CI/CD pipeline implementasyonu ve Genesys Cloud platformları gibi karmaşık third-party servis entegrasyonlarında uzmanım."
+        "2.5+ yıldır yazılım geliştirme tutkusuyla çalışan bir Full Stack .NET Developer'ım. Kariyerim boyunca binlerce kullanıcıya hizmet veren kurumsal uygulamalar geliştirdim ve her projede teknik mükemmellikle kullanıcı deneyimini bir araya getirmeye odaklandım.",
+        "Backend'de .NET Core ve Entity Framework ile sağlam mimariler kurarken, frontend'de React.js ve Vue.js ile modern kullanıcı arayüzleri geliştiriyorum. Bulut teknolojileri, mikroservis mimarileri ve DevOps pratikleriyle ölçeklenebilir çözümler üretmekten keyif alıyorum.",
+        "Kod yazmak benim için sadece bir meslek değil, aynı zamanda sürekli öğrenme ve gelişme fırsatı. Karmaşık problemleri basit, verimli çözümlere dönüştürmeyi, temiz kod yazmayı ve ekip içinde bilgi paylaşımını seviyorum."
       ],
       interests: [
         "🎮 Video Oyunları",

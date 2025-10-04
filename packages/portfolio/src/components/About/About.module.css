@@ -63,7 +63,7 @@
 /* Content Layout */
 .content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2.5fr;
   gap: 4rem;
   align-items: start;
 }
@@ -212,6 +212,8 @@
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
+  width: 100%;
+  min-width: 0;
 }
 
 .codeWindow:hover {
@@ -248,6 +250,7 @@
   padding: 2rem;
   background: var(--bg-primary);
   overflow-x: auto;
+  max-width: 100%;
 }
 
 .code {
@@ -256,6 +259,9 @@
   line-height: 1.8;
   color: var(--text-primary);
   margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .keyword {
@@ -290,7 +296,8 @@
   right: -20px;
   bottom: -20px;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .statBubble {
@@ -305,6 +312,7 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   animation: float 3s ease-in-out infinite;
   color: white;
+  flex-shrink: 0;
 }
 
 .statNumber {
@@ -623,6 +631,11 @@
     bottom: 0;
     margin-top: 2rem;
     justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .visualContent {
+    order: -1;
   }
 }
 
@@ -647,12 +660,22 @@
     font-size: 1rem;
   }
 
+  .codeWindow {
+    margin-bottom: 2rem;
+  }
+
   .codeContent {
     padding: 1rem;
   }
 
   .code {
     font-size: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .floatingStats {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
   }
 
   .statBubble {
@@ -662,6 +685,10 @@
 
   .statNumber {
     font-size: 1rem;
+  }
+
+  .statLabel {
+    font-size: 0.7rem;
   }
 }
 
@@ -679,6 +706,70 @@
   }
 
   .floatingStats {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.5rem;
+  }
+
+  .statBubble {
+    width: 70px;
+    height: 70px;
+  }
+
+  .statNumber {
+    font-size: 0.9rem;
+  }
+
+  .statLabel {
+    font-size: 0.65rem;
+  }
+
+  .codeContent {
+    padding: 0.75rem;
+  }
+
+  .code {
+    font-size: 0.7rem;
+    line-height: 1.5;
+  }
+
+  .codeWindow {
+    border-radius: 12px;
+  }
+
+  .codeHeader {
+    padding: 0.75rem 1rem;
+  }
+
+  .fileName {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .floatingStats {
+    gap: 0.25rem;
+  }
+
+  .statBubble {
+    width: 60px;
+    height: 60px;
+  }
+
+  .statNumber {
+    font-size: 0.8rem;
+  }
+
+  .statLabel {
+    font-size: 0.6rem;
+  }
+
+  .code {
+    font-size: 0.65rem;
+  }
+
+  .codeContent {
+    padding: 0.5rem;
   }
 }

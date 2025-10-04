@@ -3,8 +3,9 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
   padding-top: 5rem;
+  padding-bottom: 8rem;
 }
 
 .canvas {
@@ -512,7 +513,7 @@
 
 .scrollIndicator {
   position: absolute;
-  bottom: -8rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -703,6 +704,7 @@
 @media (max-width: 768px) {
   .hero {
     padding-top: 4rem;
+    padding-bottom: 6rem;
   }
 
   .name {
@@ -794,6 +796,11 @@
   .statIcon {
     width: 40px;
     height: 40px;
+  }
+
+  .scrollIndicator {
+    bottom: 1rem;
+    font-size: 0.75rem;
   }
 }
   
