@@ -1,24 +1,629 @@
 .advent-calendar {
-  padding: 2rem;
-  max-width: 1200px;
+  padding: 0 2rem 2rem;
+  max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 200px);
 }
+
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.4),
+    0 20px 60px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1200px;
+  overflow: visible;
+}
+
+/* Takvim üstü kar birikintisi */
+.calendar-grid::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -8px;
+  right: -8px;
+  height: 24px;
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.96) 25%,
+    rgba(255, 255, 255, 0.94) 40%,
+    rgba(240, 248, 255, 0.85) 60%,
+    rgba(230, 240, 250, 0.5) 80%,
+    transparent 100%
+  );
+  border-radius: 30px 30px 60% 60% / 30px 30px 50% 50%;
+  box-shadow:
+    0 3px 10px rgba(200, 220, 240, 0.7),
+    0 1px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 6px rgba(173, 216, 230, 0.4),
+    inset 0 2px 3px rgba(255, 255, 255, 0.9);
+  z-index: 2;
+  pointer-events: none;
+  filter: blur(0.3px);
+}
+
+/* Takvim üstü kar yığınları - daha gerçekçi */
+.calendar-grid::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background-image:
+    radial-gradient(ellipse at 12% 50%, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 35%, rgba(255, 255, 255, 0.7) 50%, transparent 70%),
+    radial-gradient(ellipse at 35% 50%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.93) 32%, rgba(255, 255, 255, 0.65) 48%, transparent 68%),
+    radial-gradient(ellipse at 58% 50%, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.94) 34%, rgba(255, 255, 255, 0.68) 49%, transparent 69%),
+    radial-gradient(ellipse at 78% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.92) 33%, rgba(255, 255, 255, 0.66) 47%, transparent 67%),
+    radial-gradient(ellipse at 92% 50%, rgba(255, 255, 255, 0.99) 0%, rgba(255, 255, 255, 0.96) 36%, rgba(255, 255, 255, 0.72) 51%, transparent 71%);
+  background-size: 90px 18px, 85px 17px, 88px 18px, 82px 16px, 92px 19px;
+  background-position: 8% 0, 28% 0, 52% 0, 72% 0, 88% 0;
+  background-repeat: no-repeat;
+  z-index: 3;
+  pointer-events: none;
+  filter: blur(0.2px);
+}
+
+/* Takvim üstü küçük kardan adamlar */
+.calendar-grid .snowman-top {
+  position: absolute;
+  top: -30px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.calendar-grid .snowman-top:nth-of-type(1) {
+  left: 8%;
+}
+
+.calendar-grid .snowman-top:nth-of-type(2) {
+  left: 45%;
+}
+
+.calendar-grid .snowman-top:nth-of-type(3) {
+  left: 82%;
+}
+
+/* Küçük kardan adam */
+.snowman-top {
+  width: 22px;
+  height: 28px;
+  position: relative;
+}
+
+/* Kardan adam alt gövde */
+.snowman-top::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 13px;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.96) 40%,
+    rgba(240, 248, 255, 0.9) 80%,
+    rgba(230, 240, 250, 0.85) 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.2),
+    inset 0 -2px 4px rgba(200, 220, 240, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 0.95);
+  z-index: 1;
+}
+
+/* Kardan adam üst gövde ve kafa */
+.snowman-top::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 12px;
+  background: 
+    radial-gradient(circle at 35% 40%, #000 1px, transparent 1.5px),
+    radial-gradient(circle at 65% 40%, #000 1px, transparent 1.5px),
+    radial-gradient(ellipse at center,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.96) 40%,
+      rgba(240, 248, 255, 0.9) 80%,
+      rgba(230, 240, 250, 0.85) 100%
+    );
+  background-size: 16px 12px, 16px 12px, 16px 12px;
+  background-position: 0 0, 0 0, 0 0;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 3px rgba(200, 220, 240, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  z-index: 2;
+}
+
+/* Kardan adam şapkası */
+.snowman-hat {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 4px;
+  background: #000;
+  border-radius: 2px 2px 0 0;
+  z-index: 3;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.snowman-hat::before {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 1px;
+  background: #000;
+}
+
+/* Popup Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: modal-fade-in 0.3s ease;
+  overflow: hidden;
+}
+
+/* Modal overlay'de kar taneleri */
+.modal-overlay::before {
+  content: '❄';
+  position: absolute;
+  top: -20px;
+  left: 10%;
+  font-size: 1.5rem;
+  animation: snow-fall 8s linear infinite;
+  opacity: 0.7;
+}
+
+.modal-overlay::after {
+  content: '❄';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  font-size: 1.2rem;
+  animation: snow-fall 10s linear infinite 2s;
+  opacity: 0.6;
+}
+
+@keyframes snow-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-box {
+  background: linear-gradient(145deg, 
+    #fff8f0 0%, 
+    #ffe5e5 25%,
+    #f0fff0 50%,
+    #fff8f0 75%,
+    #ffe5e5 100%
+  );
+  border-radius: 20px;
+  padding: 1.5rem;
+  max-width: 600px;
+  width: 85%;
+  max-height: calc(95vh + 20px);
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 25px 70px rgba(139, 0, 0, 0.5),
+    0 10px 30px rgba(34, 139, 34, 0.4),
+    0 0 0 2px rgba(255, 215, 0, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -2px 0 rgba(139, 0, 0, 0.2);
+  animation: modal-slide-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-box::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(135deg, 
+    #dc143c 0%,
+    #228b22 25%,
+    #ffd700 50%,
+    #228b22 75%,
+    #dc143c 100%
+  );
+  border-radius: 25px;
+  z-index: -1;
+  animation: border-glow 4s linear infinite;
+  box-shadow: 
+    0 0 20px rgba(220, 20, 60, 0.6),
+    0 0 40px rgba(34, 139, 34, 0.4),
+    0 0 60px rgba(255, 215, 0, 0.3);
+}
+
+@keyframes border-glow {
+  0% {
+    filter: hue-rotate(0deg) brightness(1.1);
+    box-shadow: 
+      0 0 20px rgba(220, 20, 60, 0.6),
+      0 0 40px rgba(34, 139, 34, 0.4),
+      0 0 60px rgba(255, 215, 0, 0.3);
+  }
+  33% {
+    filter: hue-rotate(10deg) brightness(1.2);
+    box-shadow: 
+      0 0 25px rgba(34, 139, 34, 0.7),
+      0 0 45px rgba(255, 215, 0, 0.5),
+      0 0 65px rgba(220, 20, 60, 0.4);
+  }
+  66% {
+    filter: hue-rotate(-10deg) brightness(1.15);
+    box-shadow: 
+      0 0 25px rgba(255, 215, 0, 0.7),
+      0 0 45px rgba(220, 20, 60, 0.5),
+      0 0 65px rgba(34, 139, 34, 0.4);
+  }
+  100% {
+    filter: hue-rotate(0deg) brightness(1.1);
+    box-shadow: 
+      0 0 20px rgba(220, 20, 60, 0.6),
+      0 0 40px rgba(34, 139, 34, 0.4),
+      0 0 60px rgba(255, 215, 0, 0.3);
+  }
+}
+
+/* Modal box üstünde noel süslemeleri */
+.modal-box::after {
+  content: '✨';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  animation: twinkle 2s ease-in-out infinite;
+  z-index: 1;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+@keyframes modal-slide-up {
+  from {
+    transform: translateY(50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: linear-gradient(145deg, #dc143c, #b22222);
+  border: 2px solid #ffd700;
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  width: clamp(35px, 8vw, 40px);
+  height: clamp(35px, 8vw, 40px);
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 4px 12px rgba(220, 20, 60, 0.5),
+    0 0 15px rgba(255, 215, 0, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  line-height: 1;
+  padding: 0;
+  z-index: 10;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  background: linear-gradient(145deg, #b22222, #8b0000);
+  transform: rotate(90deg) scale(1.15);
+  box-shadow:
+    0 6px 18px rgba(220, 20, 60, 0.7),
+    0 0 25px rgba(255, 215, 0, 0.6),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  border-color: #ffed4e;
+}
+
+.modal-close:active {
+  transform: rotate(90deg) scale(1.05);
+}
+
+.modal-title {
+  color: #2c3e50;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  background: linear-gradient(135deg, 
+    #dc143c 0%,
+    #ffd700 30%,
+    #228b22 60%,
+    #ffd700 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    0 2px 8px rgba(220, 20, 60, 0.3),
+    0 4px 12px rgba(255, 215, 0, 0.2);
+  position: relative;
+  padding: 0.25rem 0;
+  animation: title-shimmer 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.modal-title::before {
+  content: '🎄';
+  position: absolute;
+  left: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  animation: swing 3s ease-in-out infinite;
+}
+
+.modal-title::after {
+  content: '🎄';
+  position: absolute;
+  right: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  animation: swing 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes title-shimmer {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes swing {
+  0%, 100% {
+    transform: translateY(-50%) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(-50%) rotate(10deg);
+  }
+}
+
+.modal-media {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: #000;
+  flex-shrink: 0;
+  max-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-video {
+  width: 100%;
+  height: auto;
+  max-height: 50vh;
+  display: block;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  max-height: 50vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}
+
+.modal-message {
+  color: #2c3e50;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+  padding: 1rem;
+  background: linear-gradient(135deg, 
+    rgba(255, 248, 240, 0.95) 0%,
+    rgba(255, 229, 229, 0.9) 50%,
+    rgba(240, 255, 240, 0.95) 100%
+  );
+  border-radius: 12px;
+  box-shadow:
+    0 6px 20px rgba(139, 0, 0, 0.2),
+    0 0 0 2px rgba(255, 215, 0, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -2px 0 rgba(220, 20, 60, 0.1);
+  border: 3px solid;
+  border-image: linear-gradient(135deg, #dc143c, #ffd700, #228b22, #ffd700) 1;
+  position: relative;
+  flex: 0 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.modal-message::before {
+  content: '❄';
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  font-size: 1.5rem;
+  animation: twinkle 2s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.modal-message::after {
+  content: '❄';
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  font-size: 1.5rem;
+  animation: twinkle 2s ease-in-out infinite 1s;
+  opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+  .advent-calendar {
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 1.2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .calendar-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 0.75rem;
-  }
-  
-  .advent-calendar {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1rem;
     padding: 1rem;
+  }
+
+  .advent-calendar {
+    padding: 0 1rem 1rem;
+    min-height: auto;
+  }
+
+  .modal-box {
+    padding: 1rem;
+    max-width: 95vw;
+    max-height: 98vh;
+  }
+
+  .modal-title {
+    margin: 0 0 0.75rem 0;
+  }
+
+  .modal-title::before,
+  .modal-title::after {
+    display: none;
+  }
+
+  .modal-media {
+    max-height: 40vh;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-video,
+  .modal-image {
+    max-height: 40vh;
+  }
+
+  .modal-message {
+    padding: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .modal-close {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-box {
+    padding: 0.75rem;
+    border-radius: 15px;
+  }
+
+  .modal-media {
+    max-height: 35vh;
+  }
+
+  .modal-video,
+  .modal-image {
+    max-height: 35vh;
+  }
+
+  .modal-message {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
 }
 

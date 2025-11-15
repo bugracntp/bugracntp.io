@@ -1,111 +1,1499 @@
-.calendar-day {
+/* Wrapper - 3D perspektif için */
+.calendar-day-wrapper {
   aspect-ratio: 1;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  perspective: 1200px;
   position: relative;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-height: 160px;
+  max-height: 200px;
+  overflow: visible;
 }
 
-.calendar-day.available {
+.calendar-day-wrapper:hover:not(.open) {
+  transform: translateY(-10px) scale(1.05);
+}
+
+.calendar-day-wrapper.open {
   cursor: pointer;
-  animation: pulse 2s infinite;
 }
 
-.calendar-day.available:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+.calendar-day-wrapper.open:hover {
+  transform: translateY(-5px) scale(1.02);
 }
 
-.calendar-day.locked {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+/* Ana kutu - Pencere çerçevesi */
+.calendar-day {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  border-radius: 8px;
+  overflow: visible;
+  background: linear-gradient(145deg, #8B4513 0%, #654321 50%, #5C4033 100%);
+  border: 10px solid transparent;
+  border-image: linear-gradient(145deg, #5C4033, #8B4513, #5C4033) 1;
+  padding: 12px;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    0 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 2px #3E2723,
+    inset 0 0 0 4px #A0826D,
+    inset 0 0 0 8px #8B4513,
+    inset 0 0 0 10px #654321,
+    inset -3px -3px 8px rgba(0, 0, 0, 0.3),
+    inset 3px 3px 8px rgba(139, 69, 19, 0.2);
 }
 
-.calendar-day.open {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  cursor: default;
-}
-
-.day-number {
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-}
-
-.day-hint {
+/* Dış pencere pervazı */
+.calendar-day::before {
+  content: '';
   position: absolute;
-  font-size: 1.5rem;
-  opacity: 0.8;
-  animation: bounce 1s infinite;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: linear-gradient(145deg, #5C4033, #8B4513, #654321);
+  border-radius: 6px;
+  z-index: -1;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 3px #3E2723,
+    inset 0 0 0 6px #A0826D;
 }
 
-.day-content {
+/* Kar birikintisi - pencere üstü */
+.snow-on-top {
+  position: absolute;
+  top: -20px;
+  left: -18px;
+  right: -18px;
+  height: 30px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.snow-on-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.95) 30%,
+    rgba(240, 248, 255, 0.9) 60%,
+    rgba(230, 240, 250, 0.6) 80%,
+    transparent 100%
+  );
+  border-radius: 8px 8px 50% 50% / 8px 8px 30% 30%;
+  box-shadow:
+    0 3px 8px rgba(200, 220, 240, 0.8),
+    inset 0 -3px 6px rgba(173, 216, 230, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+/* Kar yığınları */
+.snow-pile {
+  position: absolute;
+  top: 0;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.95) 40%,
+    rgba(240, 248, 255, 0.9) 70%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 2px 5px rgba(200, 220, 240, 0.6),
+    inset 0 -2px 4px rgba(173, 216, 230, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  filter: blur(0.5px);
+}
+
+/* Buz sarkıtları */
+.icicle {
+  position: absolute;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 15px solid rgba(200, 230, 255, 0.9);
+  filter: drop-shadow(0 2px 3px rgba(135, 206, 235, 0.4));
+  animation: icicle-drip 3s ease-in-out infinite;
+}
+
+@keyframes icicle-drip {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.1);
+  }
+}
+
+.icicle::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -2px;
+  width: 4px;
+  height: 8px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50%;
+}
+
+/* Noel süsü */
+.christmas-ornament {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  font-size: 2.2rem;
+  z-index: 33;
+  pointer-events: none;
+  animation: ornament-swing 4s ease-in-out infinite;
+  text-shadow:
+    0 0 10px rgba(255, 215, 0, 0.6),
+    0 0 20px rgba(255, 215, 0, 0.4);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transform-origin: top center;
+}
+
+@keyframes ornament-swing {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+/* Üst kenar Noel ışıkları */
+.christmas-lights-top {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  z-index: 28;
+  pointer-events: none;
+}
+
+.light {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  background: var(--light-color, #ff0000);
+  border-radius: 40% 40% 50% 50%;
+  box-shadow:
+    0 0 8px var(--light-color, #ff0000),
+    0 0 15px var(--light-color, #ff0000),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 2px rgba(255, 255, 255, 0.5);
+  animation: light-twinkle 1.5s ease-in-out infinite;
+}
+
+.light::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 4px;
+  background: #333;
+}
+
+.light::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+@keyframes light-twinkle {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.6;
+    filter: brightness(0.7);
+  }
+}
+
+/* Pencere eşiği (window sill) */
+.window-sill {
+  position: absolute;
+  bottom: -12px;
+  left: -10px;
+  right: -10px;
+  height: 18px;
+  background: linear-gradient(145deg,
+    #8B4513 0%,
+    #A0826D 20%,
+    #654321 40%,
+    #8B4513 60%,
+    #5C4033 80%,
+    #654321 100%
+  );
+  border-radius: 0 0 4px 4px;
+  z-index: 15;
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.5),
+    inset 0 3px 6px rgba(255, 255, 255, 0.2),
+    inset 0 2px 0 rgba(160, 130, 109, 0.6),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.4),
+    inset 3px 0 4px rgba(0, 0, 0, 0.3),
+    inset -3px 0 4px rgba(0, 0, 0, 0.3);
+  transform: translateZ(10px);
+}
+
+/* Eşik üstü kar yığınları */
+.sill-snow-pile {
+  position: absolute;
+  top: -5px;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.95) 40%,
+    rgba(240, 248, 255, 0.9) 70%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 1px 4px rgba(200, 220, 240, 0.6),
+    inset 0 -1px 3px rgba(173, 216, 230, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  filter: blur(0.3px);
+  z-index: 17;
+}
+
+/* Eşikten sarkan buz sarkıtları */
+.sill-icicle {
+  position: absolute;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-top: 10px solid rgba(200, 230, 255, 0.85);
+  filter: drop-shadow(0 1px 2px rgba(135, 206, 235, 0.3));
+  animation: sill-icicle-drip 2.5s ease-in-out infinite;
+  z-index: 17;
+}
+
+@keyframes sill-icicle-drip {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scaleY(1.08);
+  }
+}
+
+/* Eşik altı ışıklar */
+.sill-lights-bottom {
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  z-index: 13;
+  pointer-events: none;
+}
+
+.sill-bulb {
+  position: absolute;
+  bottom: 5px;
+  width: 7px;
+  height: 10px;
+  background: linear-gradient(180deg,
+    var(--bulb-color, #ff0000) 0%,
+    var(--bulb-color, #ff0000) 55%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  border-radius: 40% 40% 50% 50%;
+  box-shadow:
+    0 0 10px 3px var(--bulb-color, #ff0000),
+    0 0 20px 6px var(--bulb-color, #ff0000),
+    0 0 35px 9px var(--bulb-color, #ff0000),
+    0 3px 8px rgba(0, 0, 0, 0.5),
+    inset 0 0 6px 2px var(--bulb-color, #ff0000),
+    inset 0 -4px 5px rgba(0, 0, 0, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.7);
+  filter: brightness(1.4) saturate(1.5);
+  animation: sill-bulb-led-twinkle 1.6s ease-in-out infinite;
+}
+
+@keyframes sill-bulb-led-twinkle {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1.6) saturate(1.6);
+  }
+  50% {
+    opacity: 0.7;
+    filter: brightness(1.1) saturate(1.3);
+  }
+}
+
+.sill-bulb::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 4px;
+  background: #444;
+}
+
+/* Kapı çerçevesi */
+.door-frame {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  border-radius: 0;
+  z-index: 0;
+}
+
+/* Pencere camı - 4 bölmeli */
+.window-glass-panes {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  z-index: 20;
+  pointer-events: none;
+  background: transparent;
+  border-radius: 2px;
+}
+
+/* Camlar arası dikey çizgi (ortadaki) */
+.window-glass-panes::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    #5C4033 0%,
+    #654321 20%,
+    #8B4513 40%,
+    #654321 60%,
+    #5C4033 80%,
+    #3E2723 100%
+  );
+  box-shadow:
+    inset 0 0 5px rgba(0, 0, 0, 0.6),
+    inset 0 2px 3px rgba(139, 69, 19, 0.4),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  z-index: 21;
+}
+
+/* Camlar arası yatay çizgi (ortadaki) */
+.window-glass-panes::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg,
+    #5C4033 0%,
+    #654321 20%,
+    #8B4513 40%,
+    #654321 60%,
+    #5C4033 80%,
+    #3E2723 100%
+  );
+  box-shadow:
+    inset 0 0 5px rgba(0, 0, 0, 0.6),
+    inset 2px 0 3px rgba(139, 69, 19, 0.4),
+    inset -2px 0 3px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  z-index: 21;
+}
+
+.glass-pane {
+  background: linear-gradient(135deg,
+    rgba(173, 216, 230, 0.15) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    rgba(135, 206, 235, 0.1) 50%,
+    rgba(255, 255, 255, 0.1) 70%,
+    rgba(173, 216, 230, 0.15) 100%
+  );
+  border: 2px solid #654321;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 15px rgba(255, 255, 255, 0.1),
+    inset -3px -3px 10px rgba(135, 206, 235, 0.15),
+    inset 3px 3px 10px rgba(255, 255, 255, 0.2),
+    0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0.7;
+}
+
+.glass-pane::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    ellipse at top left,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    transparent 50%
+  );
+}
+
+.glass-pane::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at bottom right,
+    rgba(173, 216, 230, 0.15) 0%,
+    rgba(135, 206, 235, 0.1) 40%,
+    transparent 70%
+  );
+}
+
+/* Pencere içi ışıklar */
+.indoor-string-lights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.indoor-bulb {
+  position: absolute;
+  width: 6px;
+  height: 9px;
+  background: linear-gradient(180deg,
+    var(--bulb-color, #ff0000) 0%,
+    var(--bulb-color, #ff0000) 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  border-radius: 40% 40% 50% 50%;
+  box-shadow:
+    0 0 8px 2px var(--bulb-color, #ff0000),
+    0 0 15px 4px var(--bulb-color, #ff0000),
+    0 0 25px 6px var(--bulb-color, #ff0000),
+    inset 0 0 5px 1px var(--bulb-color, #ff0000),
+    inset 0 -3px 4px rgba(0, 0, 0, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.9);
+  filter: brightness(1.3) saturate(1.4);
+  animation: indoor-bulb-led-twinkle 1.8s ease-in-out infinite;
+}
+
+@keyframes indoor-bulb-led-twinkle {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1.5) saturate(1.5);
+  }
+  50% {
+    opacity: 0.75;
+    filter: brightness(1) saturate(1.2);
+  }
+}
+
+/* Kapı stilleri - Panjur */
+.door {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+  backface-visibility: visible;
+  z-index: 50;
+  will-change: transform;
+}
+
+.door-left {
+  left: 0;
+  transform-origin: left;
+}
+
+.door-right {
+  right: 0;
+  transform-origin: right;
+}
+
+/* Kapı paneli - Kırmızı panjur */
+.door-panel {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.95);
-  animation: reveal 0.5s ease;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg,
+    #8B0000 0%,
+    #A52A2A 10%,
+    #8B0000 20%,
+    #A52A2A 30%,
+    #8B0000 40%,
+    #A52A2A 50%,
+    #8B0000 60%,
+    #A52A2A 70%,
+    #8B0000 80%,
+    #A52A2A 90%,
+    #8B0000 100%
+  );
+  border-radius: 4px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 0 8px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 2px 0 4px rgba(255, 255, 255, 0.1);
 }
 
-.day-content-inner {
-  text-align: center;
-  color: #333;
-  font-weight: 600;
-  font-size: 1.1rem;
+.door-left .door-panel {
+  border-radius: 4px 0 0 4px;
+  border-right: 2px solid #5C0000;
+  box-shadow:
+    inset -3px 0 8px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.door-right .door-panel {
+  border-radius: 0 4px 4px 0;
+  border-left: 2px solid #5C0000;
+  box-shadow:
+    inset 3px 0 8px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Panjur lamelleri */
+.door-panel::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 8px,
+    rgba(0, 0, 0, 0.3) 8px,
+    rgba(0, 0, 0, 0.3) 10px,
+    transparent 10px,
+    transparent 15px,
+    rgba(255, 255, 255, 0.1) 15px,
+    rgba(255, 255, 255, 0.1) 16px
+  );
+  pointer-events: none;
+}
+
+/* Kapı kolu */
+.door-left .door-panel::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 30px;
+  background: linear-gradient(90deg, #DAA520, #FFD700, #DAA520);
+  border-radius: 3px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.door-right .door-panel::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 30px;
+  background: linear-gradient(90deg, #DAA520, #FFD700, #DAA520);
+  border-radius: 3px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+/* Gün numarası */
+.day-number {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow:
+    3px 3px 6px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(255, 215, 0, 0.3),
+    0 0 20px rgba(255, 215, 0, 0.2);
+  z-index: 51;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  pointer-events: none;
+  font-family: 'Arial Black', sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Aktif olan en son gün için büyüyüp küçülme animasyonu */
+.calendar-day-wrapper.last-active-day:not(.open) .calendar-day {
+  animation: last-day-pulse 2s ease-in-out infinite;
+}
+
+.calendar-day-wrapper.last-active-day:not(.open) .day-number {
+  animation: last-day-number-pulse 2s ease-in-out infinite;
+}
+
+@keyframes last-day-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes last-day-number-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    text-shadow:
+      3px 3px 6px rgba(0, 0, 0, 0.8),
+      0 0 10px rgba(255, 215, 0, 0.3),
+      0 0 20px rgba(255, 215, 0, 0.2);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    text-shadow:
+      3px 3px 6px rgba(0, 0, 0, 0.8),
+      0 0 15px rgba(255, 215, 0, 0.8),
+      0 0 30px rgba(255, 215, 0, 0.6),
+      0 0 40px rgba(255, 215, 0, 0.4);
+  }
+}
+
+/* Açılabilir kapı stilleri */
+.calendar-day.available .door-panel {
+  animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Kilitli kapı stilleri */
+.calendar-day.locked .door-panel {
+  background: linear-gradient(180deg,
+    #4A4A4A 0%,
+    #5C5C5C 10%,
+    #4A4A4A 20%,
+    #5C5C5C 30%,
+    #4A4A4A 40%,
+    #5C5C5C 50%,
+    #4A4A4A 60%,
+    #5C5C5C 70%,
+    #4A4A4A 80%,
+    #5C5C5C 90%,
+    #4A4A4A 100%
+  );
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.calendar-day.locked .day-number {
+  color: #999;
+}
+
+/* Kilitli pencerelerde pencere camını gizle */
+.calendar-day.locked .window-glass-panes {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.calendar-day.locked .indoor-string-lights {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Açık kapı animasyonu - Kapılar yanlarda görünür kalır */
+.calendar-day-wrapper.open .door-left {
+  transform: rotateY(-100deg) translateX(-8px);
+  z-index: 55;
+}
+
+.calendar-day-wrapper.open .door-right {
+  transform: rotateY(100deg) translateX(8px);
+  z-index: 55;
+}
+
+/* İçerik alanı */
+/* Pencere arkasındaki manzara */
+.window-scenery {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease 0.5s, transform 0.4s ease 0.5s;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0 round 4px);
+}
+
+/* Gün görseli */
+.day-image {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  object-fit: cover;
+  z-index: 3;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.5s;
+  pointer-events: none;
+  display: block !important;
+  background: transparent;
+  will-change: opacity;
+  image-rendering: auto;
+}
+
+.calendar-day-wrapper.open .window-scenery {
+  opacity: 1 !important;
+  transform: scale(1);
+}
+
+/* Görseller varsa window-scenery'nin arka planını kaldır ve görsellerin görünürlüğünü artır */
+.calendar-day-wrapper.open .window-scenery:has(.day-image) {
+  background: transparent !important;
+  z-index: 100 !important;
+}
+
+/* Görseller varsa calendar-day'in arka planını da kaldır (sadece pencere içinde) */
+.calendar-day-wrapper.open:has(.day-image) .window-scenery {
+  background: transparent !important;
+}
+
+.calendar-day-wrapper.open .day-image {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  z-index: 3 !important;
+}
+
+
+@keyframes sky-shift {
   0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.15);
+  }
+}
+
+/* Yıldızlar */
+.scenery-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+  animation: twinkle-star 2s ease-in-out infinite;
+}
+
+.star::before,
+.star::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+.star::before {
+  top: -4px;
+  left: 0;
+}
+
+.star::after {
+  top: 0;
+  left: -4px;
+}
+
+.star-1 { top: 15%; left: 20%; animation-delay: 0s; }
+.star-2 { top: 25%; left: 60%; animation-delay: 0.3s; }
+.star-3 { top: 10%; left: 80%; animation-delay: 0.6s; }
+.star-4 { top: 35%; left: 15%; animation-delay: 0.9s; }
+.star-5 { top: 20%; left: 45%; animation-delay: 1.2s; }
+.star-6 { top: 30%; left: 75%; animation-delay: 1.5s; }
+
+@keyframes twinkle-star {
+  0%, 100% {
+    opacity: 0.3;
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.5);
   }
 }
 
+/* Ay */
+.scenery-moon {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #fff 0%, #e8e8e8 50%, #d0d0d0 100%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.3),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  animation: moon-glow 4s ease-in-out infinite;
+}
+
+.scenery-moon::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 8px;
+  height: 8px;
+  background: rgba(200, 200, 200, 0.4);
+  border-radius: 50%;
+}
+
+@keyframes moon-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 10px rgba(255, 255, 255, 0.6),
+      0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 30px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Bulutlar */
+.scenery-clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(100, 100, 120, 0.6);
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  filter: blur(0.5px);
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(100, 100, 120, 0.6);
+  border-radius: 100px;
+  filter: blur(0.5px);
+}
+
+.cloud-1 {
+  width: 35px;
+  height: 12px;
+  top: 25%;
+  left: 10%;
+  animation: float-cloud 12s ease-in-out infinite;
+}
+
+.cloud-1::before {
+  width: 18px;
+  height: 12px;
+  top: -6px;
+  left: 8px;
+}
+
+.cloud-1::after {
+  width: 15px;
+  height: 10px;
+  top: -5px;
+  right: 6px;
+}
+
+.cloud-2 {
+  width: 30px;
+  height: 10px;
+  top: 15%;
+  right: 15%;
+  animation: float-cloud 15s ease-in-out infinite reverse;
+}
+
+.cloud-2::before {
+  width: 15px;
+  height: 10px;
+  top: -5px;
+  left: 6px;
+}
+
+.cloud-2::after {
+  width: 12px;
+  height: 8px;
+  top: -4px;
+  right: 5px;
+}
+
+.cloud-3 {
+  width: 25px;
+  height: 8px;
+  top: 35%;
+  left: 50%;
+  animation: float-cloud 18s ease-in-out infinite;
+}
+
+.cloud-3::before {
+  width: 12px;
+  height: 8px;
+  top: -4px;
+  left: 5px;
+}
+
+.cloud-3::after {
+  width: 10px;
+  height: 7px;
+  top: -3px;
+  right: 4px;
+}
+
+@keyframes float-cloud {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(8px) translateY(-3px);
+  }
+}
+
+/* Çam Ağaçları - Arka Plan */
+.scenery-trees-background {
+  position: absolute;
+  bottom: 25%;
+  left: 0;
+  right: 0;
+  height: 30%;
+  z-index: 3;
+}
+
+.tree-back-1, .tree-back-2, .tree-back-3 {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 20px solid #0d4d0d;
+}
+
+.tree-back-1 { left: 10%; }
+.tree-back-2 { left: 45%; }
+.tree-back-3 { left: 75%; }
+
+.tree-back-1::before, .tree-back-2::before, .tree-back-3::before {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  left: -6px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 15px solid #0d4d0d;
+}
+
+.tree-back-1::after, .tree-back-2::after, .tree-back-3::after {
+  content: '';
+  position: absolute;
+  bottom: 35px;
+  left: -4px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 12px solid #0d4d0d;
+}
+
+/* Çam Ağaçları - Orta Plan */
+.scenery-trees-mid {
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  height: 35%;
+  z-index: 4;
+}
+
+.tree-mid-1, .tree-mid-2 {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 25px solid #1a661a;
+}
+
+.tree-mid-1 { left: 25%; }
+.tree-mid-2 { left: 65%; }
+
+.tree-mid-1::before, .tree-mid-2::before {
+  content: '';
+  position: absolute;
+  bottom: 25px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 20px solid #1a661a;
+}
+
+.tree-mid-1::after, .tree-mid-2::after {
+  content: '';
+  position: absolute;
+  bottom: 45px;
+  left: -6px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 15px solid #1a661a;
+}
+
+/* Çam Ağaçları - Ön Plan */
+.scenery-trees-front {
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  right: 0;
+  height: 40%;
+  z-index: 5;
+}
+
+.tree-front-1, .tree-front-2 {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 30px solid #228b22;
+}
+
+.tree-front-1 { left: 15%; }
+.tree-front-2 { left: 70%; }
+
+.tree-front-1::before, .tree-front-2::before {
+  content: '';
+  position: absolute;
+  bottom: 30px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 25px solid #228b22;
+}
+
+.tree-front-1::after, .tree-front-2::after {
+  content: '';
+  position: absolute;
+  bottom: 55px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 18px solid #228b22;
+}
+
+/* Evler */
+.scenery-houses {
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  right: 0;
+  height: 35%;
+  z-index: 4;
+}
+
+.house {
+  position: absolute;
+  bottom: 0;
+  width: 35px;
+  height: 30px;
+}
+
+.house-1 { left: 5%; }
+.house-2 { right: 10%; }
+
+.house-roof {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 12px solid #8b0000;
+}
+
+.house-body {
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  width: 32px;
+  height: 20px;
+  background: #654321;
+  border: 1px solid #5c4033;
+}
+
+.house-window {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffd700;
+  border: 1px solid #8b4513;
+  box-shadow:
+    0 0 5px rgba(255, 215, 0, 0.8),
+    inset 0 0 3px rgba(255, 255, 255, 0.5);
+  animation: window-light 2s ease-in-out infinite;
+}
+
+.window-1 {
+  top: 8px;
+  left: 6px;
+}
+
+.window-2 {
+  top: 8px;
+  right: 6px;
+}
+
+.house-door {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 8px;
+  background: #3e2723;
+  border: 1px solid #1a1a1a;
+}
+
+@keyframes window-light {
+  0%, 100% {
+    box-shadow:
+      0 0 5px rgba(255, 215, 0, 0.8),
+      inset 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 8px rgba(255, 215, 0, 1),
+      inset 0 0 5px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Kar Zemin */
+.scenery-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to top,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 248, 255, 0.9) 30%,
+    rgba(230, 240, 250, 0.7) 60%,
+    transparent 100%
+  );
+  z-index: 6;
+  border-radius: 0 0 4px 4px;
+}
+
+.scenery-ground::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+/* Kar Taneleri (Pencere İçinde) */
+.scenery-snowflakes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 8px;
+  animation: snowflake-fall 8s linear infinite;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+.snowflake-1 { left: 10%; animation-delay: 0s; animation-duration: 6s; }
+.snowflake-2 { left: 30%; animation-delay: 1s; animation-duration: 7s; }
+.snowflake-3 { left: 50%; animation-delay: 2s; animation-duration: 8s; }
+.snowflake-4 { left: 70%; animation-delay: 1.5s; animation-duration: 6.5s; }
+.snowflake-5 { left: 90%; animation-delay: 0.5s; animation-duration: 7.5s; }
+
+@keyframes snowflake-fall {
+  0% {
+    top: -10%;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    transform: translateX(20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Kardan Adam */
+.scenery-snowman {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: 20px;
+  height: 25px;
+}
+
+.snowman-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 12px;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 248, 255, 0.9) 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 -2px 3px rgba(200, 220, 240, 0.3);
+}
+
+.snowman-middle {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 10px;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 248, 255, 0.9) 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 2px rgba(200, 220, 240, 0.3);
+}
+
+.snowman-head {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 8px;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 248, 255, 0.9) 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 2px rgba(200, 220, 240, 0.3);
+}
+
+.snowman-head::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.5px;
+  height: 1.5px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.snowman-head::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 1.5px;
+  height: 1.5px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.snowman-hat {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 3px;
+  background: #000;
+  border-radius: 2px 2px 0 0;
+}
+
+.snowman-hat::before {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 1px;
+  background: #000;
+}
+
+/* Mobil responsive */
 @media (max-width: 768px) {
-  .day-number {
-    font-size: 1.5rem;
+  .calendar-day-wrapper {
+    min-height: 150px;
   }
-  
-  .day-content-inner {
-    font-size: 0.9rem;
+
+  .day-number {
+    font-size: 2.5rem;
+  }
+
+  .christmas-ornament {
+    font-size: 1.8rem;
+  }
+
+  .light {
+    width: 6px;
+    height: 10px;
+  }
+
+  .indoor-bulb {
+    width: 5px;
+    height: 8px;
+  }
+
+  .tree-back-1, .tree-back-2, .tree-back-3 {
+    border-left-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 15px;
+  }
+
+  .tree-mid-1, .tree-mid-2 {
+    border-left-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 20px;
+  }
+
+  .tree-front-1, .tree-front-2 {
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 25px;
+  }
+
+  .house {
+    width: 28px;
+    height: 24px;
+  }
+
+  .snowflake {
+    font-size: 6px;
   }
 }
-
