@@ -13,7 +13,8 @@ fs.removeSync(distDir);
 fs.ensureDirSync(distDir);
 
 const projects: Array<{ name: string; path: string }> = [
-  { name: 'portfolio', path: 'packages/portfolio' }
+  { name: 'portfolio', path: 'packages/portfolio' },
+  { name: 'calendar', path: 'packages/calendar' }
 ];
 
 projects.forEach((project) => {
