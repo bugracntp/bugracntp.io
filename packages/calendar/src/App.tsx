@@ -80,7 +80,7 @@ function App() {
     <div className="app">
       <audio
         ref={audioRef}
-        src={`${import.meta.env.BASE_URL}music/JingleBells.mp3`}
+        src={`${import.meta.env.BASE_URL}music/IndianJingleBells.mp3`}
         preload="auto"
         onError={(e) => {
           console.error('Müzik dosyası yüklenemedi:', e)
@@ -100,7 +100,7 @@ function App() {
       <header className="app-header">
         <span className="star-left">✨</span>
         <span className="star-right">⭐</span>
-        <h1>🎄 Advent Calendar 2024 🎄</h1>
+        <h1>🎄 Advent Calendar 2026 🎄</h1>
         <p>✨ Her gün yeni bir sürpriz keşfet! ✨</p>
       </header>
       <main>
