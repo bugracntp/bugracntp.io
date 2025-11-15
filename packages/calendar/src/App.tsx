@@ -6,6 +6,7 @@ function App() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
+  const [resetKey, setResetKey] = useState(0)
 
   useEffect(() => {
     const audio = audioRef.current
@@ -76,6 +77,14 @@ function App() {
     }
   }
 
+  const handleReset = () => {
+    if (window.confirm('Takvimi sıfırlamak istediğinize emin misiniz? Tüm açılan günler kapanacak.')) {
+      localStorage.removeItem('advent-calendar-opened')
+      setResetKey(prev => prev + 1)
+      console.log('Takvim sıfırlandı')
+    }
+  }
+
   return (
     <div className="app">
       <audio
@@ -97,6 +106,14 @@ function App() {
       >
         {isMuted ? '🔇' : '🔊'}
       </button>
+      <button 
+        className="reset-btn"
+        onClick={handleReset}
+        aria-label="Takvimi sıfırla"
+        title="Takvimi sıfırla"
+      >
+        🔄
+      </button>
       <header className="app-header">
         <span className="star-left">✨</span>
         <span className="star-right">⭐</span>
@@ -104,7 +121,7 @@ function App() {
         <p>✨ Her gün yeni bir sürpriz keşfet! ✨</p>
       </header>
       <main>
-        <AdventCalendar />
+        <AdventCalendar key={resetKey} />
       </main>
     </div>
   )
